@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free quote trial | Trade Quote Works</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="quote.css">
+</head>
+<body>
+<header>
+  <div class="w">
+    <a href="index.html"><img src="logo_flat.png" alt="Trade Quote Works"></a>
+    <nav>
+      <a class="home" href="index.html#enquiry">Send an enquiry</a>
+      <a class="home" href="index.html">Home</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="w">
+    <section class="card trial">
+      <h1>Try one basic quote free</h1>
+      <p>Your first basic quote is free and this trial does not take a card. After that, the price is £5 per basic quote. Bulk packs are coming later.</p>
+      <p>This trial stays in this browser. It does not send an enquiry, take a payment, or place an order. The draft it builds is a demo, not a final quotation. You must check and approve every quote before it is used. Trade Quote Works is not liable for its content or prices.</p>
+      <p>To ask us to write the quote, <a href="index.html#enquiry">send an enquiry</a>.</p>
+      <div class="actions">
+        <button class="btn" type="button" id="load-sample">Load sample job</button>
+        <button class="btn secondary" type="button" id="clear-job">Clear job</button>
+      </div>
+      <p class="hint">The sample is fictional and labelled DEMO. Every field stays editable. Working notes stay off the customer draft.</p>
+    </section>
+
+    <section class="card" id="profile">
+      <h2>Your business on the quote</h2>
+      <p id="profile-label" class="hint"></p>
+      <div class="actions">
+        <button class="btn secondary small" type="button" id="profile-toggle">Edit business</button>
+        <button class="btn secondary small" type="button" id="profile-reset">Reset fictional demo profile</button>
+      </div>
+      <div id="profile-fields" hidden>
+        <div class="grid">
+          <div class="full"><label for="profile-name">Business name</label><input id="profile-name" autocomplete="organization"></div>
+          <div class="full"><label for="profile-address">Business address</label><textarea id="profile-address" rows="3" autocomplete="street-address"></textarea></div>
+          <div><label for="profile-phone">Phone</label><input id="profile-phone" type="tel" autocomplete="tel"></div>
+          <div><label for="profile-email">Email</label><input id="profile-email" type="email" autocomplete="email"></div>
+          <div class="full">
+            <label for="profile-logo">Logo, optional PNG or JPEG</label>
+            <input id="profile-logo" type="file" accept="image/png,image/jpeg">
+            <img id="logo-preview" class="logo-preview" alt="" hidden>
+            <p class="hint">The logo is read so it can be placed on the draft. It is saved in this browser only when it is small enough. There is no account and no password.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>The job</h2>
+      <div class="grid">
+        <div><label for="cust-person">Customer name</label><input id="cust-person" autocomplete="name"></div>
+        <div><label for="cust-business">Customer business, if any</label><input id="cust-business" autocomplete="organization"></div>
+        <div class="full"><label for="cust-address">Installation address</label><textarea id="cust-address" rows="3" autocomplete="street-address"></textarea></div>
+        <div><label for="cust-email">Email</label><input id="cust-email" type="email" autocomplete="email"></div>
+        <div><label for="cust-phone">Phone</label><input id="cust-phone" type="tel" autocomplete="tel"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Equipment</h2>
+      <p class="hint">Type the exact indoor and outdoor model codes. This trial does not guess a model from a photo or a capacity.</p>
+      <h3>Indoor units</h3>
+      <div id="indoor-list"></div>
+      <button class="btn secondary small" type="button" id="add-indoor">Add indoor unit</button>
+      <h3>Outdoor units</h3>
+      <div id="outdoor-list"></div>
+      <button class="btn secondary small" type="button" id="add-outdoor">Add outdoor unit</button>
+    </section>
+
+    <section class="card" id="files">
+      <h2>Files and notes</h2>
+      <p>Add a manufacturer or supplier quote PDF, a photo, or a saved email file if you want it to hand while you type. You can also paste site notes below.</p>
+      <p><strong>Real file handling:</strong> the file stays in this browser for this visit. It is not uploaded.</p>
+      <p><strong>Not extraction:</strong> this trial lists the file name, type and size. It does not open the file or pull out equipment, prices or notes. There is no demo extraction. Type any fact you want on the quote.</p>
+      <label for="job-files">Files for this visit</label>
+      <input id="job-files" type="file" multiple accept="application/pdf,image/*,.eml,.txt,.msg">
+      <ul class="files" id="file-list"></ul>
+      <label for="notes">Working notes</label>
+      <textarea id="notes" rows="4" placeholder="Saved email text or site notes. These stay off the customer draft."></textarea>
+      <p class="checkline">Working notes and file names stay off the draft. There is nowhere to enter a supplier cost or a margin, and none is written into the PDF.</p>
+    </section>
+
+    <section class="card">
+      <h2>Price, VAT, lead time and electrics</h2>
+      <div class="grid">
+        <div><label for="price">Selling price (£)</label><input id="price" inputmode="decimal" placeholder="1950"></div>
+        <div>
+          <label for="vat">VAT basis</label>
+          <select id="vat">
+            <option value="">Select VAT basis</option>
+            <option value="including20">Including VAT at 20%</option>
+            <option value="excluding20">Excluding VAT at 20%</option>
+            <option value="confirm">VAT basis to be confirmed</option>
+          </select>
+        </div>
+        <div class="full"><label for="lead">Lead time</label><input id="lead" placeholder="To be confirmed"></div>
+        <div class="full">
+          <span class="lbl" id="electrical">Electrical works</span>
+          <label class="choice"><input type="radio" name="electrical" value="included"> <span>Included in the selling price</span></label>
+          <label class="choice"><input type="radio" name="electrical" value="excluded"> <span>Excluded from the selling price</span></label>
+          <p class="hint">The same choice is written into the total, the scope and the electrical information. Breaker size and cable size are not inferred from the unit capacity.</p>
+        </div>
+        <div class="full"><label for="scope">Scope</label><textarea id="scope" placeholder="What you are supplying and installing."></textarea></div>
+        <div class="full"><label for="anything">Anything else to include or exclude?</label><textarea id="anything" placeholder="Optional."></textarea></div>
+      </div>
+      <p class="hint">This trial does not apply a reduced VAT rate, a warranty, a deposit or an accreditation on its own. Your terms stay yours.</p>
+    </section>
+
+    <section class="card">
+      <h2>Verified manufacturer facts, optional</h2>
+      <p class="hint">Ask only for a fact you can point at. This trial does not look up a manufacturer. A fact is printed only when the exact model, the source page and the date are all filled in. Otherwise it stays off the draft and supply requirements stay pending verification.</p>
+      <div id="fact-list"></div>
+      <button class="btn secondary small" type="button" id="add-fact">Add a manufacturer fact</button>
+    </section>
+
+    <div id="missing" class="missing" hidden></div>
+    <div id="warnings" class="warn" hidden></div>
+
+    <section class="card" id="preview-section">
+      <h2>Draft preview</h2>
+      <p id="ref-line" class="hint"></p>
+      <p class="hint">The preview is the PDF. Edits update it when the required facts are complete. Swipe sideways on a phone. Type stays at print size. Body 10.5pt, headings 13pt, system at a glance 9pt, prices 14pt. The file uses Arimo, which has the same character widths as Arial, so the PDF can carry the font.</p>
+      <div id="preview" class="preview-scroll" aria-live="polite"></div>
+    </section>
+  </div>
+</main>
+<div class="dock">
+  <p id="dock-status">Add the missing facts, or load the sample job.</p>
+  <button class="btn" type="button" id="download" disabled>Download DEMO PDF</button>
+</div>
+<footer>
+  <div class="w">
+    <strong>Trade Quote Works</strong><br>
+    info@tradequoteworks.co.uk<br>
+    The installer and customer in the sample are fictional.<br>
+    <a href="index.html">Home</a> | <a href="index.html#enquiry">Send an enquiry</a> | <a href="privacy.html">Privacy policy</a> | <a href="terms.html">Installer terms</a>
+  </div>
+</footer>
+<script src="vendor/pdf-lib.min.js"></script>
+<script src="vendor/fontkit.umd.min.js"></script>
+<script src="vendor/pdf.min.js"></script>
+<script src="quote-model.js"></script>
+<script src="quote-pdf.js"></script>
+<script src="quote-app.js"></script>
+</body>
+</html>
